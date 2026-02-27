@@ -2,11 +2,15 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { MapPin, ShoppingBag, User, Menu, X, Globe } from "lucide-react";
 import { useI18n } from "@/hooks/useI18n";
+import { useCart } from "@/hooks/useCart";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
   const { t, lang, setLang, languages, dir } = useI18n();
+  let cart: { totalItems: number; setIsOpen: (o: boolean) => void } | null = null;
+  try { cart = useCart(); } catch { /* cart not available on pages without CartProvider */ }
 
   return (
     <motion.nav
@@ -24,7 +28,7 @@ const Navbar = () => {
           </div>
 
           <div className="hidden md:flex items-center gap-8">
-            <a href="#menu" className="text-foreground/70 hover:text-primary transition-colors font-body text-sm tracking-wide">{t("nav.menu")}</a>
+            <Link to="/menu" className="text-foreground/70 hover:text-primary transition-colors font-body text-sm tracking-wide">{t("nav.menu")}</Link>
             <a href="#about" className="text-foreground/70 hover:text-primary transition-colors font-body text-sm tracking-wide">{t("nav.about")}</a>
             <a href="#catering" className="text-foreground/70 hover:text-primary transition-colors font-body text-sm tracking-wide">{t("nav.catering")}</a>
           </div>
@@ -61,9 +65,9 @@ const Navbar = () => {
             <button className="w-9 h-9 rounded-full flex items-center justify-center glass-card hover:border-primary/30 transition-all">
               <User className="w-4 h-4 text-foreground/70" />
             </button>
-            <button className="relative w-9 h-9 rounded-full flex items-center justify-center btn-gold rounded-full">
+            <button onClick={() => cart?.setIsOpen(true)} className="relative w-9 h-9 rounded-full flex items-center justify-center btn-gold rounded-full">
               <ShoppingBag className="w-4 h-4" />
-              <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-saffron text-[10px] font-bold flex items-center justify-center text-background">0</span>
+              <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-saffron text-[10px] font-bold flex items-center justify-center text-background">{cart?.totalItems ?? 0}</span>
             </button>
             <button className="md:hidden w-9 h-9 flex items-center justify-center" onClick={() => setIsOpen(!isOpen)}>
               {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -75,7 +79,7 @@ const Navbar = () => {
       {isOpen && (
         <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} className="md:hidden glass-card border-t border-border">
           <div className="px-4 py-4 flex flex-col gap-3">
-            <a href="#menu" className="text-foreground/70 hover:text-primary transition-colors font-body py-2">{t("nav.menu")}</a>
+            <Link to="/menu" className="text-foreground/70 hover:text-primary transition-colors font-body py-2">{t("nav.menu")}</Link>
             <a href="#about" className="text-foreground/70 hover:text-primary transition-colors font-body py-2">{t("nav.about")}</a>
             <a href="#catering" className="text-foreground/70 hover:text-primary transition-colors font-body py-2">{t("nav.catering")}</a>
           </div>
