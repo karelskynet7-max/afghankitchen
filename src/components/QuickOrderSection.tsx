@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { Plus, Flame, Leaf, Clock } from "lucide-react";
 import { useI18n } from "@/hooks/useI18n";
+import { useCart } from "@/hooks/useCart";
+import { Link } from "react-router-dom";
 import kabuliImg from "@/assets/kabuli-pulao.jpg";
 import mantuImg from "@/assets/mantu.jpg";
 import bolaniImg from "@/assets/bolani.jpg";
@@ -49,7 +51,8 @@ const dishes: Dish[] = [
 
 const QuickOrderSection = () => {
   const { t, lang, dir } = useI18n();
-
+  let cart: ReturnType<typeof useCart> | null = null;
+  try { cart = useCart(); } catch { /* no cart provider */ }
   return (
     <section id="menu" className="py-20 md:py-28" dir={dir}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -74,7 +77,10 @@ const QuickOrderSection = () => {
                     {t("quick.popular")}
                   </div>
                 )}
-                <button className="absolute bottom-3 right-3 w-10 h-10 rounded-full btn-gold flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                <button
+                  onClick={() => cart?.addItem({ id: dish.id, name: dish.name, price: parseFloat(dish.price.replace("€", "").replace(",", ".")), image: dish.image })}
+                  className="absolute bottom-3 right-3 w-10 h-10 rounded-full btn-gold flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0"
+                >
                   <Plus className="w-5 h-5" />
                 </button>
               </div>
@@ -104,7 +110,7 @@ const QuickOrderSection = () => {
         </div>
 
         <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="mt-10 text-center">
-          <button className="btn-lapis px-8 py-3 rounded-xl font-body text-sm">{t("quick.viewMenu")}</button>
+          <Link to="/menu" className="btn-lapis px-8 py-3 rounded-xl font-body text-sm inline-block">{t("quick.viewMenu")}</Link>
         </motion.div>
       </div>
     </section>

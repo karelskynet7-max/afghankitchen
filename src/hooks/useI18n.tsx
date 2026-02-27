@@ -44,6 +44,25 @@ const translations: Translations = {
   "quick.viewMenu": { nl: "Bekijk Volledige Menu →", en: "View Full Menu →", da: "مشاهده منوی کامل ←" },
   "quick.popular": { nl: "Populair", en: "Popular", da: "محبوب" },
 
+  // Menu page
+  "menu.label": { nl: "Ons Menu", en: "Our Menu", da: "منوی ما" },
+  "menu.title": { nl: "Ontdek Onze Gerechten", en: "Discover Our Dishes", da: "غذاهای ما را کشف کنید" },
+  "menu.desc": {
+    nl: "Verse Afghaanse gerechten, dagelijks bereid met authentieke recepten en de beste ingrediënten.",
+    en: "Fresh Afghan dishes, prepared daily with authentic recipes and the finest ingredients.",
+    da: "غذاهای تازه افغانی، هر روز با دستورهای اصیل و بهترین مواد تهیه می‌شود.",
+  },
+  "menu.search": { nl: "Zoek gerechten...", en: "Search dishes...", da: "جستجوی غذا..." },
+  "menu.noResults": { nl: "Geen gerechten gevonden", en: "No dishes found", da: "غذایی یافت نشد" },
+
+  // Cart
+  "cart.title": { nl: "Winkelwagen", en: "Cart", da: "سبد خرید" },
+  "cart.empty": { nl: "Je winkelwagen is leeg", en: "Your cart is empty", da: "سبد خرید شما خالی است" },
+  "cart.subtotal": { nl: "Subtotaal", en: "Subtotal", da: "جمع فرعی" },
+  "cart.delivery": { nl: "Bezorgkosten", en: "Delivery fee", da: "هزینه تحویل" },
+  "cart.total": { nl: "Totaal", en: "Total", da: "مجموع" },
+  "cart.checkout": { nl: "Afrekenen", en: "Checkout", da: "پرداخت" },
+
   // Footer
   "footer.rights": { nl: "Alle rechten voorbehouden.", en: "All rights reserved.", da: "تمامی حقوق محفوظ است." },
 };
