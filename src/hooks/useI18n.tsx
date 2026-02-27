@@ -65,6 +65,20 @@ const translations: Translations = {
 
   // Footer
   "footer.rights": { nl: "Alle rechten voorbehouden.", en: "All rights reserved.", da: "تمامی حقوق محفوظ است." },
+
+  // Catering
+  "catering.label": { nl: "Zakelijke Catering", en: "Corporate Catering", da: "کترینگ شرکتی" },
+  "catering.title": { nl: "Afghaanse Catering voor Elk Evenement", en: "Afghan Catering for Every Event", da: "کترینگ افغانی برای هر مراسم" },
+  "catering.desc": {
+    nl: "Van bedrijfslunches tot bruiloften — wij verzorgen authentieke Afghaanse buffetten met BTW-factuur voor zakelijke klanten.",
+    en: "From corporate lunches to weddings — we provide authentic Afghan buffets with VAT invoicing for business clients.",
+    da: "از ناهار شرکتی تا عروسی — ما بوفه‌های اصیل افغانی با فاکتور مالیاتی برای مشتریان تجاری ارائه می‌دهیم.",
+  },
+  "catering.minOrder": { nl: "Vanaf 10 personen", en: "Minimum 10 guests", da: "حداقل ۱۰ نفر" },
+  "catering.vat": { nl: "BTW-factuur beschikbaar", en: "VAT invoice available", da: "فاکتور مالیاتی موجود" },
+  "catering.custom": { nl: "Menu op maat", en: "Custom menu", da: "منوی سفارشی" },
+  "catering.cta": { nl: "Offerte Aanvragen", en: "Request Quote", da: "درخواست قیمت" },
+  "catering.weekly": { nl: "Wekelijkse levering mogelijk", en: "Weekly delivery available", da: "تحویل هفتگی موجود" },
 };
 
 const languageNames: Record<Language, string> = {

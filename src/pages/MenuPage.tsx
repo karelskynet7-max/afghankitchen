@@ -10,6 +10,7 @@ import kabuliImg from "@/assets/kabuli-pulao.jpg";
 import mantuImg from "@/assets/mantu.jpg";
 import bolaniImg from "@/assets/bolani.jpg";
 import heroKebab from "@/assets/hero-kebab.jpg";
+import qabiliChicken from "@/assets/qabili-chicken.jpg";
 
 interface MenuItem {
   id: number;
@@ -31,7 +32,7 @@ const menuItems: MenuItem[] = [
   { id: 3, name: { nl: "Bolani", en: "Bolani", da: "بولانی" }, nameDari: "بولانی", desc: { nl: "Gevulde platbrood met aardappel", en: "Stuffed flatbread with potato", da: "نان پر شده با کچالو" }, price: 9.95, image: bolaniImg, category: "appetizers", tags: ["Vegan"], prepTime: "15 min", spiceLevel: 0 },
   { id: 4, name: { nl: "Chapli Kebab", en: "Chapli Kebab", da: "کباب چپلی" }, nameDari: "کباب چپلی", desc: { nl: "Gekruide rundergehakt kebab", en: "Spiced minced beef kebab", da: "کباب گوشت بره ادویه‌دار" }, price: 15.50, image: heroKebab, category: "kebabs", tags: ["Halal"], prepTime: "20 min", popular: true, spiceLevel: 3 },
   { id: 5, name: { nl: "Tikka Kebab", en: "Tikka Kebab", da: "کباب تکه" }, nameDari: "کباب تکه", desc: { nl: "Gemarineerde kiplappen op de grill", en: "Marinated chicken pieces on the grill", da: "تکه‌های مرغ ماریناد شده روی گریل" }, price: 14.95, image: heroKebab, category: "kebabs", tags: ["Halal", "Gluten-Free"], prepTime: "18 min", spiceLevel: 2 },
-  { id: 6, name: { nl: "Qabili Palau Murgh", en: "Chicken Qabili Palau", da: "قابلی پلو مرغ" }, nameDari: "قابلی پلو مرغ", desc: { nl: "Kip met geurige rijst en rozijnen", en: "Chicken with fragrant rice and raisins", da: "مرغ با برنج خوشبو و کشمش" }, price: 15.50, image: kabuliImg, category: "rice", tags: ["Halal", "Gluten-Free"], prepTime: "25 min", spiceLevel: 1 },
+  { id: 6, name: { nl: "Qabili Palau Murgh", en: "Chicken Qabili Palau", da: "قابلی پلو مرغ" }, nameDari: "قابلی پلو مرغ", desc: { nl: "Kip met geurige rijst en rozijnen", en: "Chicken with fragrant rice and raisins", da: "مرغ با برنج خوشبو و کشمش" }, price: 15.50, image: qabiliChicken, category: "rice", tags: ["Halal", "Gluten-Free"], prepTime: "25 min", spiceLevel: 1 },
   { id: 7, name: { nl: "Aushak", en: "Aushak", da: "آشک" }, nameDari: "آشک", desc: { nl: "Dumplings met prei en yoghurtsaus", en: "Leek dumplings with yogurt sauce", da: "آشک با تره و ماست" }, price: 13.50, image: mantuImg, category: "appetizers", tags: ["Halal"], prepTime: "22 min", spiceLevel: 1 },
   { id: 8, name: { nl: "Afghaanse Groene Thee", en: "Afghan Green Tea", da: "چای سبز" }, nameDari: "چای سبز", desc: { nl: "Traditionele groene thee met kardemom", en: "Traditional green tea with cardamom", da: "چای سبز سنتی با هل" }, price: 3.50, image: bolaniImg, category: "drinks", tags: ["Vegan", "Gluten-Free"], prepTime: "5 min", spiceLevel: 0 },
 ];
