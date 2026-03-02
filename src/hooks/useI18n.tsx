@@ -79,6 +79,16 @@ const translations: Translations = {
   "catering.custom": { nl: "Menu op maat", en: "Custom menu", da: "منوی سفارشی" },
   "catering.cta": { nl: "Offerte Aanvragen", en: "Request Quote", da: "درخواست قیمت" },
   "catering.weekly": { nl: "Wekelijkse levering mogelijk", en: "Weekly delivery available", da: "تحویل هفتگی موجود" },
+
+  // Ramadan
+  "ramadan.badge": { nl: "Ramadan Mubarak ☪", en: "Ramadan Mubarak ☪", da: "رمضان مبارک ☪" },
+  "ramadan.title": { nl: "Ramadan Mubarak!", en: "Ramadan Mubarak!", da: "!رمضان مبارک" },
+  "ramadan.desc": {
+    nl: "Bestel onze speciale Iftar-pakketten voor het hele gezin. Vers bereid, op tijd bezorgd vóór zonsondergang.",
+    en: "Order our special Iftar packages for the whole family. Freshly prepared, delivered before sunset.",
+    da: "بسته‌های ویژه افطاری ما را برای تمام خانواده سفارش دهید. تازه تهیه شده، قبل از غروب تحویل داده می‌شود.",
+  },
+  "ramadan.cta": { nl: "Bekijk Iftar Menu", en: "View Iftar Menu", da: "مشاهده منوی افطار" },
 };
 
 const languageNames: Record<Language, string> = {
