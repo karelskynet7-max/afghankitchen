@@ -3,12 +3,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, CheckCircle, Loader2 } from "lucide-react";
 import { useI18n } from "@/hooks/useI18n";
 import { useCart } from "@/hooks/useCart";
+import { useAuth } from "@/hooks/useAuth";
 import { useSubmitOrder } from "@/hooks/useOrders";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 const CheckoutDialog = () => {
   const { t, lang, dir } = useI18n();
   const { items, totalPrice, clearCart, isOpen: cartOpen, setIsOpen: setCartOpen } = useCart();
+  const { user } = useAuth();
   const submitOrder = useSubmitOrder();
   const [open, setOpen] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -39,6 +41,7 @@ const CheckoutDialog = () => {
         items,
         totalPrice: totalPrice + (form.orderType === "delivery" ? 3.5 : 0),
         paymentMethod: form.paymentMethod,
+        userId: user?.id || null,
       });
       setSuccess(true);
       clearCart();

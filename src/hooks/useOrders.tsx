@@ -12,6 +12,7 @@ interface OrderData {
   notes?: string;
   items: CartItem[];
   totalPrice: number;
+  userId?: string | null;
 }
 
 export const useSubmitOrder = () => {
@@ -29,6 +30,7 @@ export const useSubmitOrder = () => {
           notes: order.notes || null,
           total_price: order.totalPrice,
           payment_method: order.paymentMethod,
+          user_id: order.userId || null,
         })
         .select("id")
         .single();
