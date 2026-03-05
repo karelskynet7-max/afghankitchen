@@ -7,6 +7,7 @@ import HeroSection from "@/components/HeroSection";
 import RamadanBanner from "@/components/RamadanBanner";
 import FeaturesStrip from "@/components/FeaturesStrip";
 import QuickOrderSection from "@/components/QuickOrderSection";
+import AboutSection from "@/components/AboutSection";
 import CateringSection from "@/components/CateringSection";
 import CartSidebar from "@/components/CartSidebar";
 import Footer from "@/components/Footer";
@@ -31,6 +32,7 @@ const Index = () => {
           <RamadanBanner />
           <FeaturesStrip />
           <QuickOrderSection />
+          <AboutSection />
           <CateringSection />
           <Footer />
         </div>
