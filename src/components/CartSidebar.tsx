@@ -61,7 +61,7 @@ const CartSidebar = () => {
                 <span>{t("cart.total")}</span>
                 <span className="text-gold-gradient">€{(totalPrice + 2.5).toFixed(2).replace(".", ",")}</span>
               </div>
-              <button className="w-full btn-gold py-3 rounded-xl font-body font-semibold text-sm">
+              <button onClick={() => (window as any).__openCheckout?.()} className="w-full btn-gold py-3 rounded-xl font-body font-semibold text-sm">
                 {t("cart.checkout")}
               </button>
             </div>

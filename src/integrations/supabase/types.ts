@@ -14,7 +14,201 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      catering_requests: {
+        Row: {
+          company_name: string
+          contact_name: string
+          created_at: string
+          dietary_requirements: string[] | null
+          email: string
+          event_date: string
+          event_type: string | null
+          guest_count: number
+          id: string
+          message: string | null
+          phone: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          company_name: string
+          contact_name: string
+          created_at?: string
+          dietary_requirements?: string[] | null
+          email: string
+          event_date: string
+          event_type?: string | null
+          guest_count: number
+          id?: string
+          message?: string | null
+          phone: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          company_name?: string
+          contact_name?: string
+          created_at?: string
+          dietary_requirements?: string[] | null
+          email?: string
+          event_date?: string
+          event_type?: string | null
+          guest_count?: number
+          id?: string
+          message?: string | null
+          phone?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      menu_items: {
+        Row: {
+          available: boolean | null
+          category: string
+          created_at: string
+          desc_da: string
+          desc_en: string
+          desc_nl: string
+          id: number
+          image_url: string | null
+          name_da: string
+          name_dari: string
+          name_en: string
+          name_nl: string
+          popular: boolean | null
+          prep_time: string | null
+          price: number
+          spice_level: number | null
+          tags: string[] | null
+          updated_at: string
+        }
+        Insert: {
+          available?: boolean | null
+          category: string
+          created_at?: string
+          desc_da: string
+          desc_en: string
+          desc_nl: string
+          id?: number
+          image_url?: string | null
+          name_da: string
+          name_dari: string
+          name_en: string
+          name_nl: string
+          popular?: boolean | null
+          prep_time?: string | null
+          price: number
+          spice_level?: number | null
+          tags?: string[] | null
+          updated_at?: string
+        }
+        Update: {
+          available?: boolean | null
+          category?: string
+          created_at?: string
+          desc_da?: string
+          desc_en?: string
+          desc_nl?: string
+          id?: number
+          image_url?: string | null
+          name_da?: string
+          name_dari?: string
+          name_en?: string
+          name_nl?: string
+          popular?: boolean | null
+          prep_time?: string | null
+          price?: number
+          spice_level?: number | null
+          tags?: string[] | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      order_items: {
+        Row: {
+          created_at: string
+          id: string
+          menu_item_id: number
+          order_id: string
+          quantity: number
+          unit_price: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          menu_item_id: number
+          order_id: string
+          quantity?: number
+          unit_price: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          menu_item_id?: number
+          order_id?: string
+          quantity?: number
+          unit_price?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "order_items_menu_item_id_fkey"
+            columns: ["menu_item_id"]
+            isOneToOne: false
+            referencedRelation: "menu_items"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "order_items_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      orders: {
+        Row: {
+          created_at: string
+          customer_email: string | null
+          customer_name: string
+          customer_phone: string
+          delivery_address: string | null
+          id: string
+          notes: string | null
+          order_type: string
+          status: string
+          total_price: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          customer_email?: string | null
+          customer_name: string
+          customer_phone: string
+          delivery_address?: string | null
+          id?: string
+          notes?: string | null
+          order_type?: string
+          status?: string
+          total_price: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          customer_email?: string | null
+          customer_name?: string
+          customer_phone?: string
+          delivery_address?: string | null
+          id?: string
+          notes?: string | null
+          order_type?: string
+          status?: string
+          total_price?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
