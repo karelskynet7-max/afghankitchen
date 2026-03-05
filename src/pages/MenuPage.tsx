@@ -16,6 +16,7 @@ const categories = [
   { key: "rice", label: { nl: "Rijst", en: "Rice Dishes", da: "غذاهای برنجی" } },
   { key: "appetizers", label: { nl: "Voorgerechten", en: "Appetizers", da: "پیش‌غذا" } },
   { key: "drinks", label: { nl: "Dranken", en: "Drinks", da: "نوشیدنی‌ها" } },
+  { key: "raw", label: { nl: "Rauw & Bevroren", en: "Raw & Frozen", da: "خام و منجمد" } },
 ];
 
 const filters = ["Halal", "Vegan", "Gluten-Free"];
