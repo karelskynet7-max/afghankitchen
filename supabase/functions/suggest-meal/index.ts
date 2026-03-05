@@ -44,8 +44,12 @@ Reply in ${langMap[lang] || "English"}.
 Be warm, enthusiastic, and brief. Use emojis sparingly.
 Format your response as a structured meal suggestion with clear sections.
 
-IMPORTANT: You MUST end your response with a line starting with "ITEMS:" followed by a comma-separated list of the menu item IDs you suggested, with quantities in the format ID:quantity. Example: ITEMS:1:2,3:1,5:1
-This line will be parsed programmatically so follow the format exactly.`;
+CRITICAL REQUIREMENT - YOU MUST FOLLOW THIS EXACTLY:
+The very last line of your response MUST be exactly in this format:
+ITEMS:1:2,3:1,5:1
+Where each entry is menuItemID:quantity separated by commas.
+Do NOT wrap it in markdown. Do NOT add any text after it. Do NOT forget this line.
+This line is parsed by code and the feature breaks without it.`;
 
     const userPrompt = `Here is our menu:
 ${menuSummary}
@@ -58,7 +62,11 @@ Include:
 - Total estimated price
 
 Keep it short and appetizing. Show dish names and prices clearly.
-Remember to end with the ITEMS: line containing the IDs and quantities.`;
+
+YOUR FINAL LINE MUST BE (no markdown, no backticks, just plain text):
+ITEMS:id:qty,id:qty,id:qty
+Example: ITEMS:1:1,2:1,8:1
+This is mandatory and must be the absolute last line.`;
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
