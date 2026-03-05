@@ -29,8 +29,8 @@ const Navbar = () => {
 
           <div className="hidden md:flex items-center gap-8">
             <Link to="/menu" className="text-foreground/70 hover:text-primary transition-colors font-body text-sm tracking-wide">{t("nav.menu")}</Link>
-            <a href="#about" className="text-foreground/70 hover:text-primary transition-colors font-body text-sm tracking-wide">{t("nav.about")}</a>
-            <a href="#catering" className="text-foreground/70 hover:text-primary transition-colors font-body text-sm tracking-wide">{t("nav.catering")}</a>
+            <Link to="/#about" className="text-foreground/70 hover:text-primary transition-colors font-body text-sm tracking-wide">{t("nav.about")}</Link>
+            <Link to="/#catering" className="text-foreground/70 hover:text-primary transition-colors font-body text-sm tracking-wide">{t("nav.catering")}</Link>
           </div>
 
           <div className="flex items-center gap-3">
@@ -80,8 +80,8 @@ const Navbar = () => {
         <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} className="md:hidden glass-card border-t border-border">
           <div className="px-4 py-4 flex flex-col gap-3">
             <Link to="/menu" className="text-foreground/70 hover:text-primary transition-colors font-body py-2">{t("nav.menu")}</Link>
-            <a href="#about" className="text-foreground/70 hover:text-primary transition-colors font-body py-2">{t("nav.about")}</a>
-            <a href="#catering" className="text-foreground/70 hover:text-primary transition-colors font-body py-2">{t("nav.catering")}</a>
+            <Link to="/#about" onClick={() => setIsOpen(false)} className="text-foreground/70 hover:text-primary transition-colors font-body py-2">{t("nav.about")}</Link>
+            <Link to="/#catering" onClick={() => setIsOpen(false)} className="text-foreground/70 hover:text-primary transition-colors font-body py-2">{t("nav.catering")}</Link>
           </div>
         </motion.div>
       )}
