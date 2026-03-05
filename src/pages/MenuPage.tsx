@@ -8,6 +8,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CartSidebar from "@/components/CartSidebar";
 import CheckoutDialog from "@/components/CheckoutDialog";
+import MealSuggestion from "@/components/MealSuggestion";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const categories = [
@@ -54,6 +55,7 @@ const MenuPageInner = () => {
       <Navbar />
       <CartSidebar />
       <CheckoutDialog />
+      <MealSuggestion />
 
       {/* Header */}
       <section className="pt-20 md:pt-32 pb-4 md:pb-12">
