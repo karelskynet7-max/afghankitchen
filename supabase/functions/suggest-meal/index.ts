@@ -23,14 +23,14 @@ serve(async (req) => {
     // Fetch available menu items (exclude raw category)
     const { data: items, error } = await supabase
       .from("menu_items")
-      .select("name_en, name_nl, name_da, name_dari, price, category, tags, spice_level")
+      .select("id, name_en, name_nl, name_da, name_dari, price, category, tags, spice_level, image_url")
       .eq("available", true)
       .neq("category", "raw");
 
     if (error) throw error;
 
     const menuSummary = items
-      .map((i) => `${i.name_en} (€${i.price}, ${i.category}, tags: ${(i.tags ?? []).join(", ")})`)
+      .map((i) => `[ID:${i.id}] ${i.name_en} (€${i.price}, ${i.category}, tags: ${(i.tags ?? []).join(", ")})`)
       .join("\n");
 
     const langMap: Record<string, string> = {
@@ -42,7 +42,10 @@ serve(async (req) => {
     const systemPrompt = `You are a friendly Afghan cuisine expert at Ariana restaurant. You suggest complete meals from the menu. 
 Reply in ${langMap[lang] || "English"}.
 Be warm, enthusiastic, and brief. Use emojis sparingly.
-Format your response as a structured meal suggestion with clear sections.`;
+Format your response as a structured meal suggestion with clear sections.
+
+IMPORTANT: You MUST end your response with a line starting with "ITEMS:" followed by a comma-separated list of the menu item IDs you suggested, with quantities in the format ID:quantity. Example: ITEMS:1:2,3:1,5:1
+This line will be parsed programmatically so follow the format exactly.`;
 
     const userPrompt = `Here is our menu:
 ${menuSummary}
@@ -54,7 +57,8 @@ Include:
 - A drink for each person
 - Total estimated price
 
-Keep it short and appetizing. Show dish names and prices clearly.`;
+Keep it short and appetizing. Show dish names and prices clearly.
+Remember to end with the ITEMS: line containing the IDs and quantities.`;
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
@@ -88,9 +92,38 @@ Keep it short and appetizing. Show dish names and prices clearly.`;
     }
 
     const data = await response.json();
-    const suggestion = data.choices?.[0]?.message?.content ?? "Could not generate a suggestion.";
+    const fullText = data.choices?.[0]?.message?.content ?? "Could not generate a suggestion.";
 
-    return new Response(JSON.stringify({ suggestion }), {
+    // Parse out the ITEMS: line
+    const lines = fullText.split("\n");
+    const itemsLineIdx = lines.findIndex((l: string) => l.trim().startsWith("ITEMS:"));
+    let suggestion = fullText;
+    let suggestedItems: { id: number; quantity: number; name: Record<string, string>; price: number; image: string }[] = [];
+
+    if (itemsLineIdx !== -1) {
+      // Remove the ITEMS: line from the displayed suggestion
+      suggestion = lines.slice(0, itemsLineIdx).join("\n").trim();
+      const itemsPart = lines[itemsLineIdx].trim().replace("ITEMS:", "").trim();
+      const pairs = itemsPart.split(",").map((p: string) => p.trim()).filter(Boolean);
+
+      for (const pair of pairs) {
+        const [idStr, qtyStr] = pair.split(":");
+        const id = parseInt(idStr, 10);
+        const qty = parseInt(qtyStr || "1", 10);
+        const menuItem = items.find((i) => i.id === id);
+        if (menuItem) {
+          suggestedItems.push({
+            id: menuItem.id,
+            quantity: qty,
+            name: { nl: menuItem.name_nl, en: menuItem.name_en, da: menuItem.name_da },
+            price: menuItem.price,
+            image: menuItem.image_url || "",
+          });
+        }
+      }
+    }
+
+    return new Response(JSON.stringify({ suggestion, suggestedItems }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   } catch (e) {
