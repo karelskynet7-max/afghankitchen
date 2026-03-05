@@ -1,14 +1,17 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin, ShoppingBag, User, Menu, X, Globe } from "lucide-react";
+import { MapPin, ShoppingBag, User, Menu, X, Globe, LogOut } from "lucide-react";
 import { useI18n } from "@/hooks/useI18n";
 import { useCart } from "@/hooks/useCart";
-import { Link } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
   const { t, lang, setLang, languages, dir } = useI18n();
+  const { user } = useAuth();
+  const navigate = useNavigate();
   let cart: { totalItems: number; setIsOpen: (o: boolean) => void } | null = null;
   try { cart = useCart(); } catch { /* cart not available on pages without CartProvider */ }
 
@@ -62,7 +65,11 @@ const Navbar = () => {
               <MapPin className="w-4 h-4" />
               <span className="hidden sm:inline font-body">Amsterdam</span>
             </button>
-            <button className="w-9 h-9 rounded-full flex items-center justify-center glass-card hover:border-primary/30 transition-all">
+            <button
+              onClick={() => navigate(user ? "/my-orders" : "/auth")}
+              className="w-9 h-9 rounded-full flex items-center justify-center glass-card hover:border-primary/30 transition-all"
+              title={user ? "My Orders" : "Sign In"}
+            >
               <User className="w-4 h-4 text-foreground/70" />
             </button>
             <button onClick={() => cart?.setIsOpen(true)} className="relative w-9 h-9 rounded-full flex items-center justify-center btn-gold rounded-full">
