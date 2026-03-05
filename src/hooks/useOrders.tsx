@@ -8,6 +8,7 @@ interface OrderData {
   customerEmail?: string;
   deliveryAddress?: string;
   orderType: "pickup" | "delivery";
+  paymentMethod: "cash" | "crypto";
   notes?: string;
   items: CartItem[];
   totalPrice: number;
@@ -27,6 +28,7 @@ export const useSubmitOrder = () => {
           order_type: order.orderType,
           notes: order.notes || null,
           total_price: order.totalPrice,
+          payment_method: order.paymentMethod,
         })
         .select("id")
         .single();

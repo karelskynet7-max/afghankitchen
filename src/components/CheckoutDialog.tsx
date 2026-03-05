@@ -17,6 +17,7 @@ const CheckoutDialog = () => {
     customerPhone: "",
     customerEmail: "",
     orderType: "pickup" as "pickup" | "delivery",
+    paymentMethod: "cash" as "cash" | "crypto",
     deliveryAddress: "",
     notes: "",
   });
@@ -37,13 +38,14 @@ const CheckoutDialog = () => {
         ...form,
         items,
         totalPrice: totalPrice + (form.orderType === "delivery" ? 3.5 : 0),
+        paymentMethod: form.paymentMethod,
       });
       setSuccess(true);
       clearCart();
       setTimeout(() => {
         setOpen(false);
         setSuccess(false);
-        setForm({ customerName: "", customerPhone: "", customerEmail: "", orderType: "pickup", deliveryAddress: "", notes: "" });
+        setForm({ customerName: "", customerPhone: "", customerEmail: "", orderType: "pickup", paymentMethod: "cash", deliveryAddress: "", notes: "" });
       }, 3000);
     } catch (err) {
       console.error("Order failed:", err);
@@ -62,6 +64,10 @@ const CheckoutDialog = () => {
     submit: { nl: "Bestelling Plaatsen", en: "Place Order", da: "ثبت سفارش" },
     success: { nl: "Bestelling geplaatst! 🎉", en: "Order placed! 🎉", da: "!سفارش ثبت شد 🎉" },
     successDesc: { nl: "We nemen snel contact op.", en: "We'll contact you shortly.", da: ".به زودی با شما تماس می‌گیریم" },
+    paymentLabel: { nl: "Betaalmethode", en: "Payment Method", da: "روش پرداخت" },
+    cash: { nl: "Contant bij bezorging", en: "Cash on Delivery", da: "پرداخت نقدی در درب" },
+    crypto: { nl: "Crypto vooruitbetaling", en: "Crypto Pre-payment", da: "پیش‌پرداخت کریپتو" },
+    cryptoInfo: { nl: "Scan het adres om vooraf te betalen met crypto", en: "Scan the address to pre-pay with crypto", da: "آدرس را اسکن کنید تا با کریپتو پیش‌پرداخت کنید" },
   };
 
   const l = (key: keyof typeof labels) => labels[key][lang];
@@ -119,6 +125,40 @@ const CheckoutDialog = () => {
                 className="w-full px-4 py-2.5 rounded-xl bg-muted/50 border border-border font-body text-sm text-foreground focus:outline-none focus:border-primary/50 transition-colors" />
             </div>
           )}
+
+          {/* Payment Method */}
+          <div>
+            <label className="font-body text-sm text-muted-foreground block mb-2">{l("paymentLabel")}</label>
+            <div className="flex gap-3">
+              {(["cash", "crypto"] as const).map((method) => (
+                <button key={method} type="button" onClick={() => setForm({ ...form, paymentMethod: method })}
+                  className={`flex-1 py-2.5 rounded-xl font-body text-sm font-medium border transition-all flex items-center justify-center gap-2 ${form.paymentMethod === method ? "btn-gold" : "border-border text-muted-foreground hover:border-primary/30"}`}>
+                  {method === "cash" ? "💵" : "₿"}
+                  {l(method)}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {form.paymentMethod === "crypto" && (
+            <div className="rounded-xl border border-primary/20 bg-primary/5 p-4 space-y-3">
+              <p className="font-body text-sm text-muted-foreground text-center">{l("cryptoInfo")}</p>
+              <div className="flex flex-col items-center gap-2">
+                <div className="bg-background rounded-lg p-3 border border-border">
+                  <img
+                    src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=bitcoin:bc1qexampleaddress123456789`}
+                    alt="Crypto wallet QR"
+                    className="w-36 h-36"
+                  />
+                </div>
+                <code className="font-mono text-xs text-foreground/70 bg-muted px-3 py-1.5 rounded-lg break-all select-all text-center max-w-full">
+                  bc1qexampleaddress123456789
+                </code>
+                <p className="font-body text-xs text-muted-foreground">BTC / ETH / USDT</p>
+              </div>
+            </div>
+          )}
+
           <div>
             <label className="font-body text-sm text-muted-foreground block mb-1">{l("notes")}</label>
             <textarea value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} rows={2}
