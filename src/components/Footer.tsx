@@ -4,7 +4,7 @@ const Footer = () => {
   const { t, dir } = useI18n();
 
   return (
-    <footer id="about" className="border-t border-border py-10" dir={dir}>
+    <footer className="border-t border-border py-10" dir={dir}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-2">
           <span className="text-gold-gradient font-display text-xl font-bold">Ariana</span>

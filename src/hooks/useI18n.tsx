@@ -63,6 +63,29 @@ const translations: Translations = {
   "cart.total": { nl: "Totaal", en: "Total", da: "مجموع" },
   "cart.checkout": { nl: "Afrekenen", en: "Checkout", da: "پرداخت" },
 
+  // About
+  "about.label": { nl: "Over Ons", en: "About Us", da: "درباره ما" },
+  "about.title": { nl: "Eeuwenoude Smaken, Vers op Jouw Bord", en: "Ancient Flavours, Fresh on Your Plate", da: "طعم‌های کهن، تازه در بشقاب شما" },
+  "about.p1": {
+    nl: "Ariana is geboren uit heimwee en hartstocht. Onze oprichters groeiden op met de geuren van verse mantu uit oma's keuken, het sissen van kebabs op houtskool, en de magie van saffraan die door een pot kabuli pulao walmt.",
+    en: "Ariana was born from nostalgia and passion. Our founders grew up with the aromas of fresh mantu from grandmother's kitchen, the sizzle of kebabs on charcoal, and the magic of saffron swirling through a pot of kabuli pulao.",
+    da: "آریانا از دلتنگی و عشق زاده شد. بنیانگذاران ما با عطر منتوی تازه از آشپزخانه مادربزرگ، صدای جلز و ولز کباب روی زغال، و جادوی زعفران در دیگ قابلی پلو بزرگ شدند.",
+  },
+  "about.p2": {
+    nl: "Vandaag brengen we diezelfde authenticiteit naar Nederland — elk gerecht handgemaakt, elke kruiding gebalanceerd, elke maaltijd een reis naar het hart van Afghanistan. Geen shortcuts, geen compromissen, alleen eerlijk eten met ziel.",
+    en: "Today we bring that same authenticity to the Netherlands — every dish handcrafted, every spice balanced, every meal a journey to the heart of Afghanistan. No shortcuts, no compromises, just honest food with soul.",
+    da: "امروز ما همان اصالت را به هالند می‌آوریم — هر غذا دست‌ساز، هر ادویه متعادل، هر وعده سفری به قلب افغانستان. بدون میانبر، بدون سازش، فقط غذای صادقانه با روح.",
+  },
+  "about.quote": {
+    nl: "Eten is meer dan voeding — het is liefde, traditie en samenzijn aan één tafel.",
+    en: "Food is more than nourishment — it is love, tradition, and togetherness at one table.",
+    da: "غذا بیش از تغذیه است — عشق، سنت و همبستگی در یک سفره.",
+  },
+  "about.since": { nl: "Sinds", en: "Since", da: "از سال" },
+  "about.served": { nl: "Geserveerd", en: "Meals Served", da: "وعده سرو شده" },
+  "about.halal": { nl: "Halal", en: "Halal", da: "حلال" },
+  "about.cities": { nl: "Steden", en: "Cities", da: "شهر" },
+
   // Footer
   "footer.rights": { nl: "Alle rechten voorbehouden.", en: "All rights reserved.", da: "تمامی حقوق محفوظ است." },
 
