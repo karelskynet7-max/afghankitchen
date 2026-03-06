@@ -6,11 +6,18 @@ import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import { I18nProvider } from "@/hooks/useI18n";
 
-const statusSteps = [
+const deliverySteps = [
   { key: "pending", icon: Clock, label: "Order Received" },
   { key: "preparing", icon: ChefHat, label: "Preparing" },
   { key: "delivering", icon: Truck, label: "On the Way" },
   { key: "delivered", icon: Package, label: "Delivered" },
+  { key: "completed", icon: CheckCircle, label: "Completed" },
+];
+
+const pickupSteps = [
+  { key: "pending", icon: Clock, label: "Order Received" },
+  { key: "preparing", icon: ChefHat, label: "Preparing" },
+  { key: "ready", icon: Package, label: "Ready for Pickup" },
   { key: "completed", icon: CheckCircle, label: "Completed" },
 ];
 
@@ -32,6 +39,7 @@ const TrackOrderInner = () => {
     refetchInterval: 15000,
   });
 
+  const statusSteps = order?.order_type === "pickup" ? pickupSteps : deliverySteps;
   const isCancelled = order?.status === "cancelled";
   const currentStepIdx = statusSteps.findIndex((s) => s.key === order?.status);
 
