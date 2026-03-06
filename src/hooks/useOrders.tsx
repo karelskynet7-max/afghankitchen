@@ -48,7 +48,14 @@ export const useSubmitOrder = () => {
       const { error: itemsError } = await supabase.from("order_items").insert(orderItems);
       if (itemsError) throw itemsError;
 
-      return orderRow.id;
+      // Fetch the tracking token
+      const { data: orderWithToken } = await supabase
+        .from("orders")
+        .select("tracking_token")
+        .eq("id", orderRow.id)
+        .single();
+
+      return { id: orderRow.id, trackingToken: orderWithToken?.tracking_token || null };
     },
   });
 };

@@ -9,6 +9,7 @@ import MenuPage from "./pages/MenuPage";
 import AuthPage from "./pages/AuthPage";
 import MyOrdersPage from "./pages/MyOrdersPage";
 import AdminDashboard from "./pages/AdminDashboard";
+import TrackOrderPage from "./pages/TrackOrderPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -25,6 +26,7 @@ const App = () => (
             <Route path="/menu" element={<MenuPage />} />
             <Route path="/auth" element={<AuthPage />} />
             <Route path="/my-orders" element={<MyOrdersPage />} />
+            <Route path="/track/:token" element={<TrackOrderPage />} />
             <Route path="/ariana-admin-7x9k" element={<AdminDashboard />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

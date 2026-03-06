@@ -180,6 +180,7 @@ export type Database = {
           payment_method: string
           status: string
           total_price: number
+          tracking_token: string | null
           updated_at: string
           user_id: string | null
         }
@@ -195,6 +196,7 @@ export type Database = {
           payment_method?: string
           status?: string
           total_price: number
+          tracking_token?: string | null
           updated_at?: string
           user_id?: string | null
         }
@@ -210,6 +212,7 @@ export type Database = {
           payment_method?: string
           status?: string
           total_price?: number
+          tracking_token?: string | null
           updated_at?: string
           user_id?: string | null
         }

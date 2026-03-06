@@ -177,7 +177,12 @@ const AdminDashboard = () => {
                     <TableCell className="font-body text-sm text-muted-foreground whitespace-nowrap">
                       {new Date(order.created_at).toLocaleDateString("en-GB", { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" })}
                     </TableCell>
-                    <TableCell className="font-body text-sm font-medium text-foreground">{order.customer_name}</TableCell>
+                    <TableCell className="font-body text-sm font-medium text-foreground">
+                      {order.customer_name}
+                      {!order.user_id && (
+                        <span className="ml-2 px-1.5 py-0.5 rounded-full bg-orange-500/20 text-orange-400 text-[10px] font-semibold uppercase">Guest</span>
+                      )}
+                    </TableCell>
                     <TableCell className="font-body text-sm text-muted-foreground">{order.customer_phone}</TableCell>
                     <TableCell className="font-body text-xs text-muted-foreground max-w-[200px]">
                       {order.order_items?.map((i: any) => `${i.quantity}x ${i.menu_items?.name_en || "?"}`).join(", ")}
