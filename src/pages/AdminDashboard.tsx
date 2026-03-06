@@ -13,13 +13,15 @@ import { toast } from "sonner";
 const statusColors: Record<string, string> = {
   pending: "bg-yellow-500/20 text-yellow-400",
   preparing: "bg-orange-500/20 text-orange-400",
+  ready: "bg-emerald-500/20 text-emerald-400",
   delivering: "bg-blue-500/20 text-blue-400",
   delivered: "bg-green-500/20 text-green-400",
   completed: "bg-green-500/20 text-green-400",
   cancelled: "bg-red-500/20 text-red-400",
 };
 
-const statusFlow = ["pending", "preparing", "delivering", "delivered", "completed", "cancelled"];
+const deliveryStatusFlow = ["pending", "preparing", "delivering", "delivered", "completed", "cancelled"];
+const pickupStatusFlow = ["pending", "preparing", "ready", "completed", "cancelled"];
 
 const AdminDashboard = () => {
   const { user } = useAuth();
@@ -202,7 +204,7 @@ const AdminDashboard = () => {
                           </button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent>
-                          {statusFlow.map((s) => (
+                          {(order.order_type === "pickup" ? pickupStatusFlow : deliveryStatusFlow).map((s) => (
                             <DropdownMenuItem
                               key={s}
                               onClick={() => updateStatus.mutate({ id: order.id, status: s })}
