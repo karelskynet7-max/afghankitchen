@@ -38,6 +38,18 @@ const AuthPageInner = () => {
     try {
       if (isLogin) {
         await signIn(email, password);
+        // Check if user is admin and redirect accordingly
+        const { data: session } = await (await import("@/integrations/supabase/client")).supabase.auth.getSession();
+        if (session?.session?.user) {
+          const { data: isAdmin } = await (await import("@/integrations/supabase/client")).supabase.rpc("has_role", {
+            _user_id: session.session.user.id,
+            _role: "admin",
+          });
+          if (isAdmin) {
+            navigate("/ariana-admin-7x9k");
+            return;
+          }
+        }
       } else {
         await signUp(email, password, fullName);
       }

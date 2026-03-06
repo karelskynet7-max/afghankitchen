@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, CheckCircle, Loader2 } from "lucide-react";
+import { X, CheckCircle, Loader2, Copy, ExternalLink } from "lucide-react";
 import { useI18n } from "@/hooks/useI18n";
 import { useCart } from "@/hooks/useCart";
 import { useAuth } from "@/hooks/useAuth";
 import { useSubmitOrder } from "@/hooks/useOrders";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { toast } from "sonner";
 
 const CheckoutDialog = () => {
   const { t, lang, dir } = useI18n();
@@ -14,6 +15,7 @@ const CheckoutDialog = () => {
   const submitOrder = useSubmitOrder();
   const [open, setOpen] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [trackingUrl, setTrackingUrl] = useState("");
   const [form, setForm] = useState({
     customerName: "",
     customerPhone: "",
@@ -25,7 +27,6 @@ const CheckoutDialog = () => {
   });
 
   // Expose open function on cart checkout button
-  // We use a global event
   if (typeof window !== "undefined") {
     (window as any).__openCheckout = () => {
       setCartOpen(false);
@@ -36,23 +37,32 @@ const CheckoutDialog = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await submitOrder.mutateAsync({
+      const result = await submitOrder.mutateAsync({
         ...form,
         items,
         totalPrice: totalPrice + (form.orderType === "delivery" ? 3.5 : 0),
         paymentMethod: form.paymentMethod,
         userId: user?.id || null,
       });
+      const url = `${window.location.origin}/track/${result.trackingToken}`;
+      setTrackingUrl(url);
       setSuccess(true);
       clearCart();
-      setTimeout(() => {
-        setOpen(false);
-        setSuccess(false);
-        setForm({ customerName: "", customerPhone: "", customerEmail: "", orderType: "pickup", paymentMethod: "cash", deliveryAddress: "", notes: "" });
-      }, 3000);
     } catch (err) {
       console.error("Order failed:", err);
     }
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setSuccess(false);
+    setTrackingUrl("");
+    setForm({ customerName: "", customerPhone: "", customerEmail: "", orderType: "pickup", paymentMethod: "cash", deliveryAddress: "", notes: "" });
+  };
+
+  const copyTrackingLink = () => {
+    navigator.clipboard.writeText(trackingUrl);
+    toast.success("Tracking link copied!");
   };
 
   const labels = {
@@ -67,6 +77,7 @@ const CheckoutDialog = () => {
     submit: { nl: "Bestelling Plaatsen", en: "Place Order", da: "ثبت سفارش" },
     success: { nl: "Bestelling geplaatst! 🎉", en: "Order placed! 🎉", da: "!سفارش ثبت شد 🎉" },
     successDesc: { nl: "We nemen snel contact op.", en: "We'll contact you shortly.", da: ".به زودی با شما تماس می‌گیریم" },
+    trackingDesc: { nl: "Bewaar deze link om je bestelling te volgen:", en: "Save this link to track your order:", da: "این لینک را برای پیگیری سفارش ذخیره کنید:" },
     paymentLabel: { nl: "Betaalmethode", en: "Payment Method", da: "روش پرداخت" },
     cash: { nl: "Contant bij bezorging", en: "Cash on Delivery", da: "پرداخت نقدی در درب" },
     crypto: { nl: "Crypto vooruitbetaling", en: "Crypto Pre-payment", da: "پیش‌پرداخت کریپتو" },
@@ -77,14 +88,31 @@ const CheckoutDialog = () => {
 
   if (success) {
     return (
-      <Dialog open={open} onOpenChange={setOpen}>
+      <Dialog open={open} onOpenChange={handleClose}>
         <DialogContent className="sm:max-w-md" dir={dir}>
-          <div className="flex flex-col items-center justify-center py-10 gap-4">
+          <div className="flex flex-col items-center justify-center py-8 gap-4">
             <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: "spring" }}>
               <CheckCircle className="w-16 h-16 text-primary" />
             </motion.div>
             <h3 className="font-display text-2xl font-bold text-foreground">{l("success")}</h3>
-            <p className="text-muted-foreground font-body">{l("successDesc")}</p>
+            <p className="text-muted-foreground font-body text-center">{l("successDesc")}</p>
+            
+            {trackingUrl && (
+              <div className="w-full space-y-2 mt-2">
+                <p className="text-sm font-body text-muted-foreground text-center">{l("trackingDesc")}</p>
+                <div className="flex items-center gap-2 bg-muted/50 rounded-xl border border-border p-3">
+                  <code className="flex-1 text-xs font-mono text-foreground/70 break-all select-all">{trackingUrl}</code>
+                  <button onClick={copyTrackingLink} className="shrink-0 p-1.5 rounded-lg hover:bg-muted transition-colors">
+                    <Copy className="w-4 h-4 text-muted-foreground" />
+                  </button>
+                </div>
+                <a href={trackingUrl} target="_blank" rel="noopener noreferrer"
+                  className="w-full btn-gold py-2.5 rounded-xl font-body text-sm font-semibold flex items-center justify-center gap-2">
+                  <ExternalLink className="w-4 h-4" />
+                  Track Order
+                </a>
+              </div>
+            )}
           </div>
         </DialogContent>
       </Dialog>
