@@ -32,9 +32,12 @@ const Index = () => {
           <Navbar />
           <CartSidebar />
           <HeroSection />
+          <LiveOrderCounter />
           <RamadanBanner />
           <FeaturesStrip />
+          <SpecialOfTheDay />
           <QuickOrderSection />
+          <TestimonialsSection />
           <AboutSection />
           <CateringSection />
           <Footer />
