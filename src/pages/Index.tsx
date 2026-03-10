@@ -4,9 +4,12 @@ import { I18nProvider } from "@/hooks/useI18n";
 import { CartProvider } from "@/hooks/useCart";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import LiveOrderCounter from "@/components/LiveOrderCounter";
 import RamadanBanner from "@/components/RamadanBanner";
 import FeaturesStrip from "@/components/FeaturesStrip";
+import SpecialOfTheDay from "@/components/SpecialOfTheDay";
 import QuickOrderSection from "@/components/QuickOrderSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
 import AboutSection from "@/components/AboutSection";
 import CateringSection from "@/components/CateringSection";
 import CartSidebar from "@/components/CartSidebar";
@@ -29,9 +32,12 @@ const Index = () => {
           <Navbar />
           <CartSidebar />
           <HeroSection />
+          <LiveOrderCounter />
           <RamadanBanner />
           <FeaturesStrip />
+          <SpecialOfTheDay />
           <QuickOrderSection />
+          <TestimonialsSection />
           <AboutSection />
           <CateringSection />
           <Footer />
