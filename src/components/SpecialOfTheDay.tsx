@@ -50,7 +50,6 @@ const SpecialOfTheDay = () => {
       name: specialItem.name,
       price: Number(discountedPrice),
       image: specialItem.image,
-      quantity: 1,
     });
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
