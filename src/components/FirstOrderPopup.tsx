@@ -112,7 +112,7 @@ const FirstOrderPopup = () => {
                   {COUPON_CODE}
                 </span>
                 <button onClick={handleCopy} className="text-muted-foreground hover:text-primary transition-colors">
-                  {copied ? <Check className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4" />}
+                  {copied ? <Check className="w-4 h-4 text-primary" /> : <Copy className="w-4 h-4" />}
                 </button>
               </div>
             </div>

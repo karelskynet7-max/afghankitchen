@@ -14,6 +14,9 @@ import AboutSection from "@/components/AboutSection";
 import CateringSection from "@/components/CateringSection";
 import CartSidebar from "@/components/CartSidebar";
 import Footer from "@/components/Footer";
+import FirstOrderPopup from "@/components/FirstOrderPopup";
+import SocialProofToasts from "@/components/SocialProofToasts";
+import ExitIntentPopup from "@/components/ExitIntentPopup";
 
 const Index = () => {
   const location = useLocation();
