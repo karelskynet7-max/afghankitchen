@@ -44,6 +44,9 @@ const Index = () => {
           <AboutSection />
           <CateringSection />
           <Footer />
+          <FirstOrderPopup />
+          <SocialProofToasts />
+          <ExitIntentPopup />
         </div>
       </CartProvider>
     </I18nProvider>
