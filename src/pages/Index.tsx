@@ -49,6 +49,8 @@ const Index = () => {
           <FirstOrderPopup />
           <SocialProofToasts />
           <ExitIntentPopup />
+          <SpinWheelPopup />
+          <StickyMobileOrderButton />
         </div>
       </CartProvider>
     </I18nProvider>

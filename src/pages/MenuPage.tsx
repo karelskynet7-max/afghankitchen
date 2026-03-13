@@ -91,6 +91,11 @@ const MenuPageInner = () => {
             </div>
           </div>
 
+          {/* Urgency Countdown */}
+          <div className="mt-4 md:mt-6">
+            <UrgencyCountdown />
+          </div>
+
           {/* Categories */}
           <div className="mt-3 md:mt-6 flex items-center gap-1.5 md:gap-2 overflow-x-auto pb-2 scrollbar-hide">
             {categories.map((cat) => (
