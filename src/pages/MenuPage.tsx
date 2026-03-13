@@ -9,6 +9,7 @@ import Footer from "@/components/Footer";
 import CartSidebar from "@/components/CartSidebar";
 import CheckoutDialog from "@/components/CheckoutDialog";
 import MealSuggestion from "@/components/MealSuggestion";
+import UrgencyCountdown from "@/components/UrgencyCountdown";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const categories = [
