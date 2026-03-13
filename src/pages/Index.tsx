@@ -17,6 +17,8 @@ import Footer from "@/components/Footer";
 import FirstOrderPopup from "@/components/FirstOrderPopup";
 import SocialProofToasts from "@/components/SocialProofToasts";
 import ExitIntentPopup from "@/components/ExitIntentPopup";
+import SpinWheelPopup from "@/components/SpinWheelPopup";
+import StickyMobileOrderButton from "@/components/StickyMobileOrderButton";
 
 const Index = () => {
   const location = useLocation();
@@ -47,6 +49,8 @@ const Index = () => {
           <FirstOrderPopup />
           <SocialProofToasts />
           <ExitIntentPopup />
+          <SpinWheelPopup />
+          <StickyMobileOrderButton />
         </div>
       </CartProvider>
     </I18nProvider>

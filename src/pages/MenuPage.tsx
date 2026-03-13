@@ -9,6 +9,7 @@ import Footer from "@/components/Footer";
 import CartSidebar from "@/components/CartSidebar";
 import CheckoutDialog from "@/components/CheckoutDialog";
 import MealSuggestion from "@/components/MealSuggestion";
+import UrgencyCountdown from "@/components/UrgencyCountdown";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const categories = [
@@ -88,6 +89,11 @@ const MenuPageInner = () => {
                 </button>
               ))}
             </div>
+          </div>
+
+          {/* Urgency Countdown */}
+          <div className="mt-4 md:mt-6">
+            <UrgencyCountdown />
           </div>
 
           {/* Categories */}
