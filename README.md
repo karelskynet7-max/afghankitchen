@@ -1,73 +1,64 @@
-# Welcome to your Lovable project
+# Afghan Bites
 
-## Project info
+### PROJECT CODENAME: AFGHAN-NETHERLANDS UNICORN (ARIANA TECH)
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+**Concept:** A hyper-premium, AI-driven food platform for Afghan Cuisine tailored for the Dutch market (Amsterdam, Rotterdam, Utrecht, Den Haag).
 
-## How can I edit this code?
+**1. Dutch Market Infrastructure:**
 
-There are several ways of editing your application.
+- **Local Payments:** Full integration with **iDEAL** (Essential for NL), Apple Pay, and a "Tikkie-style" split-bill feature for group orders.
 
-**Use Lovable**
+- **Logistics:** Smart integration for bike-couriers (typical for NL) with real-time GPS tracking and weather-adjusted delivery fees.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+- **Multilingual:** Auto-detect browser language and toggle between Dutch, English, and Dari/Pashto.
 
-Changes made via Lovable will be committed automatically to this repo.
+**2. $1B Features (The "Unicorn" Logic):**
 
-**Use your preferred IDE**
+- **AI Personalization Engine:** A "Taste Profile" for users that recommends dishes based on their spice tolerance and dietary needs (Vegan/Halal/Gluten-Free).
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- **The "Call-Center" Hub:** A dedicated portal for operators to take phone orders that instantly syncs with a "Kitchen Display System" (KDS).
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- **Cash Management:** A "Driver Wallet" system for Cash on Delivery (COD) that tracks exact change needed and driver deposits.
 
-Follow these steps:
+- **B2B Catering Module:** A separate portal for Dutch offices (corporate catering) with tax-deductible invoicing (BTW/VAT) and scheduled recurring orders.
+
+**3. Premium UI/UX:**
+
+- **Visuals:** High-end "Glassmorphism" design with Afghan cultural elements (blue Lapis Lazuli accents and gold trimmings).
+
+- **Speed:** Zero-latency transitions. The site must feel like a native mobile app.
+
+- **Engagement:** Gamified "Saffron Levels" loyalty program where users unlock exclusive "Afghan Secret Menu" items.
+
+**4. Technical Tech Stack (Direct for Lovable):**
+
+- **Frontend:** Next.js (React) + Tailwind CSS.
+
+- **Backend:** Supabase for real-time order tables and user auth.
+
+- **Integrations:** Stripe (for iDEAL/Cards), Mapbox (for delivery tracking).
+
+"Create the landing page first, featuring a hero section with a video background of Afghan kebabs on a grill, followed by a 'Quick Order' dashboard that remembers the user's last meal."
+
+This project was built with [Lovable](https://lovable.dev).
+
+**Live app**: https://afghankitchen.lovable.app
+
+## Build with Lovable
+
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/ef60dc6d-ae5c-4084-b445-a44037b989c4).
+
+- **Ship faster**: describe what you want to build and Lovable handles the code.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+
+## Development
+
+Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
+git clone <this-repository-url>
+cd <repository-name>
 npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
 ```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
